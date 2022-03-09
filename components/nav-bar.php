@@ -17,7 +17,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?php if (explode('/', $_SERVER['SCRIPT_NAME'])[2] == 'signin.php') {
+                            <a class="nav-link <?php if (basename($_SERVER["SCRIPT_FILENAME"], '.php') == 'signin') {
                                                     echo 'active';
                                                 } ?>" href="./signin.php">
                                 เข้าสู่ระบบ
@@ -25,22 +25,22 @@
                         </li>
                     <?php } ?>
                     <li class="nav-item">
-                        <a class="nav-link <?php if (explode('/', $_SERVER['SCRIPT_NAME'])[2] == 'index.php') {
+                        <a class="nav-link <?php if (basename($_SERVER["SCRIPT_FILENAME"], '.php') == 'index') {
                                                 echo 'active';
                                             } ?>" aria-current="page" href="./index.php"><i class="fa-solid fa-house"></i> หน้าแรก</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if (explode('/', $_SERVER['SCRIPT_NAME'])[2] == 'category.php') {
+                        <a class="nav-link <?php if (basename($_SERVER["SCRIPT_FILENAME"], '.php') == 'category') {
                                                 echo 'active';
                                             } ?>" href="./category.php"><i class="fa-solid fa-tags"></i> สารบัญพันธุ์ไม้</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if (explode('/', $_SERVER['SCRIPT_NAME'])[2] == 'shop.php') {
+                        <a class="nav-link <?php if (basename($_SERVER["SCRIPT_FILENAME"], '.php') == 'shop') {
                                                 echo 'active';
                                             } ?>" href="./shop.php"><i class="fa-solid fa-store"></i> ร้านค้า</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if (explode('/', $_SERVER['SCRIPT_NAME'])[2] == 'form.php') {
+                        <a class="nav-link <?php if (basename($_SERVER["SCRIPT_FILENAME"], '.php') == 'form') {
                                                 echo 'active';
                                             } ?>" href="./form.php"><i class="fa-solid fa-pen-to-square"></i> จดทะเบียนพันธุ์ไม้</a>
                     </li>
@@ -52,7 +52,7 @@
                         $user = $stmt->fetch();
                         ?>
                         <li class="nav-item dropdown">
-                            <a class="nav-link <?php if (explode('/', $_SERVER['SCRIPT_NAME'])[2] == 'settings.php') {
+                            <a class="nav-link <?php if (basename($_SERVER["SCRIPT_FILENAME"], '.php') == 'settings') {
                                                     echo 'active';
                                                 } ?>" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-circle-user"></i> <?= $user['user_fname']; ?>
