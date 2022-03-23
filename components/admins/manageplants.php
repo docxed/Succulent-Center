@@ -126,7 +126,7 @@ if (isset($_GET['id'])) { ?>
                             $stmt->execute();
                             $plantsgroups = $stmt->fetchAll();
                             if (!$plantsgroups) {
-                                echo '<option disabled>ไม่มีวงศ์</option>';
+                                echo '<option disabled>ไม่มีสกุล</option>';
                             } else {
                                 foreach ($plantsgroups as $plantsgroup) { ?>
                                     <option value="<?= $plantsgroup['plantsgroup_name']; ?>">สกุล <?= $plantsgroup['plantsgroup_name']; ?></option>
