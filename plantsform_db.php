@@ -70,7 +70,7 @@ if (isset($_POST['add'])) {
                                 });
                             });
                         </script>";
-                            header("refresh:1; url=settings.php?q=form");
+                            header("refresh:1; url=plantsformview.php");
                         } else {
                             echo "<script>
                             $(document).ready(function() {
@@ -91,6 +91,46 @@ if (isset($_POST['add'])) {
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
+    }
+} else if (isset($_POST['status'])) {
+    $status = $_POST['status'];
+    $id = $_POST['id'];
+
+    try {
+        $edit = $conn->prepare("UPDATE plantsform SET plantsform_status=:state WHERE plantsform_id = :id");
+        $edit->bindParam(":state", $status);
+        $edit->bindParam(":id", $id);
+        $edit->execute();
+
+        if ($edit) {
+            echo "<script>
+            $(document).ready(function() {
+                Swal.fire({
+                    title: 'สำเร็จ',
+                    text: 'อัปเดตสถานะสำเร็จ',
+                    icon: 'success',
+                    timer: 5000,
+                    showConfirmButton: false
+                });
+            });
+        </script>";
+            header("refresh:1; url=admin.php?q=manageplantsform");
+        } else {
+            echo "<script>
+            $(document).ready(function() {
+                Swal.fire({
+                    title: 'ไม่สำเร็จ',
+                    text: 'มีบางอย่างผิดพลาด โปรดลองอีกครั้งในภายหลัง',
+                    icon: 'error',
+                    timer: 5000,
+                    showConfirmButton: false
+                });
+            });
+        </script>";
+            header("refresh:2; url=admin.php?q=manageplantsform");
+        }
+    } catch (PDOException $e) {
+        echo $e->getMessage();
     }
 }
 

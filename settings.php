@@ -12,6 +12,8 @@
                 include_once("./components/profile.php");
             } else if ($_GET['q'] == 'changepassword') {
                 include_once("./components/changepassword.php");
+            } else if ($_GET['q'] == 'form') {
+                include_once("./components/form.php");
             }
         }
         ?>
