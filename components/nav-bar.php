@@ -32,7 +32,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php if (basename($_SERVER["SCRIPT_FILENAME"], '.php') == 'category') {
                                                 echo 'active';
-                                            } ?>" href="./category.php"><i class="fa-solid fa-tags"></i> สารบัญพันธุ์ไม้</a>
+                                            } ?>" href="./category.php?q=plantsfamily"><i class="fa-solid fa-tags"></i> สารบัญพันธุ์ไม้</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php if (basename($_SERVER["SCRIPT_FILENAME"], '.php') == 'shop') {

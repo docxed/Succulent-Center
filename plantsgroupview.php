@@ -2,18 +2,29 @@
 <?php include_once("./config/db.php"); ?>
 <?php include_once("./components/head.php"); ?>
 <?php include_once("./components/nav-bar.php"); ?>
-<div>
-    <br><br>
-    <div class="container">
-        <h2>ไม้อวบน้ำ</h2>
-        <hr>
-        <p class="fs-5">&nbsp;&nbsp;&nbsp;&nbsp;คำว่า ไม้อวบน้ำ เป็นคำที่นักพืชสวนในบ้านเราแปลมาจากศัพท์ภาษอังกฤษว่า Succulent ซึ่งมีรากศัพท์มาจากภาษาละตินว่า Succulentus อันมีความหมายว่า อวบหรืออิ่มน้ำ ไม้อวบน้ำในที่นี้จึงหมายถึงพรรณไม้ที่มีวิวัฒนาการทางสรีระให้สามารถเก็บ กักน้ำไว้ในส่วนต่าง ๆ รองลำต้น ไม่ว่าจะเป้นราก หัวใต้ดิน ลำต้น หรือใบเพื่อดำรงชีวิตอยู่ในสภาวะที่แห้งแล้งยาวนาน</p>
+<div class="container my-5">
+    <?php
+    $id = $_GET['id'];
+    $stmt = $conn->query("SELECT * FROM plantsgroup WHERE plantsgroup_id = $id");
+    $stmt->execute();
+    $plantsgroup = $stmt->fetch();
+    ?>
+    <h2><?= $plantsgroup['plantsgroup_name'] ?></h2>
+    <hr>
+    <br>
+    <div class="fs-5">
+        <p>วงศ์ <?= $plantsgroup['plantsfamily_name'] ?></p>
+        <p class="h4 mb-3">รายละเอียด</p>
+        <p class="mb-3"><?= $plantsgroup['plantsgroup_detail'] ?></p>
+        <p class="h4 mb-3">ลักษณะทั่วไป</p>
+        <p><?= $plantsgroup['plantsgroup_type'] ?></p>
         <br>
         <h2>พันธุ์ไม้ที่เกี่ยวข้อง</h2>
         <hr>
         <br>
         <?php
-        $stmt = $conn->query("SELECT * FROM plants ORDER BY RAND()");
+        $plantsgroupName = $plantsgroup['plantsgroup_name'];
+        $stmt = $conn->query("SELECT * FROM plants WHERE plantsgroup_name = '$plantsgroupName' ORDER BY plants_name ASC");
         $stmt->execute();
         $plants = $stmt->fetchAll();
         if (!$plants) {
@@ -41,5 +52,6 @@
         }
         ?>
     </div>
+
 </div>
 <?php include_once("./components/footer.php"); ?>
