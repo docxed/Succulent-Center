@@ -15,12 +15,12 @@ if (isset($_GET['id'])) { ?>
                 <div class="modal-body">
                     <?php
                     $edit_id = $_GET['id'];
-                    $stmt = $conn->query("SELECT * FROM plantsgroup WHERE plantsgroup_id = $edit_id");
+                    $stmt = $conn->query("SELECT * FROM plants WHERE plants_id = $edit_id");
                     $stmt->execute();
-                    $edit_plantsgroup = $stmt->fetch();
+                    $edit_plants = $stmt->fetch();
                     ?>
-                    <form action="plantsgroup_db.php" method="post">
-                        <div class="mb-3">
+                    <form action="plants_db.php" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
                             <label for="plantsfamily_name" class="form-label">วงศ์</label>
                             <select name="plantsfamily_name" class="form-select" required>
                                 <?php
@@ -31,7 +31,7 @@ if (isset($_GET['id'])) { ?>
                                     echo '<option disabled>ไม่มีวงศ์</option>';
                                 } else {
                                     foreach ($plantsfamilys as $plantsfamily) { ?>
-                                        <option value="<?= $plantsfamily['plantsfamily_name']; ?>" <?php if ($plantsfamily['plantsfamily_name'] == $edit_plantsgroup['plantsfamily_name']) {
+                                        <option value="<?= $plantsfamily['plantsfamily_name']; ?>" <?php if ($plantsfamily['plantsfamily_name'] == $edit_plants['plantsfamily_name']) {
                                                                                                         echo 'selected';
                                                                                                     } ?>>วงศ์ <?= $plantsfamily['plantsfamily_name']; ?></option>
                                 <?php }
@@ -40,18 +40,44 @@ if (isset($_GET['id'])) { ?>
                             </select>
                         </div>
                         <div class="mb-3">
+                            <label for="plantsgroup_name" class="form-label">สกุล</label>
+                            <select name="plantsgroup_name" class="form-select" required>
+                            <?php
+                                $stmt = $conn->query("SELECT * FROM plantsgroup");
+                                $stmt->execute();
+                                $plantsgroups = $stmt->fetchAll();
+                                if (!$plantsgroups) {
+                                    echo '<option disabled>ไม่มีสกุล</option>';
+                                } else {
+                                    foreach ($plantsgroups as $plantsgroup) { ?>
+                                        <option value="<?= $plantsgroup['plantsgroup_name']; ?>" <?php if ($plantsgroup['plantsgroup_name'] == $edit_plants['plantsgroup_name']) {
+                                                                                                        echo 'selected';
+                                                                                                    } ?>>สกุล <?= $plantsgroup['plantsgroup_name']; ?></option>
+                                <?php }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label for="name" class="form-label">ชื่อ</label>
-                            <input type="text" name="name" class="form-control" value="<?= $edit_plantsgroup['plantsgroup_name']; ?>" placeholder="ชื่อ" aria-describedby="name" required>
+                            <input type="text" name="name" class="form-control" value="<?= $edit_plants['plants_name']; ?>"  placeholder="ชื่อ" aria-describedby="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="namemarket" class="form-label">ชื่อทางการตลาด (ไม่มีใส่ -)</label>
+                            <input type="text" name="namemarket" class="form-control" value="<?= $edit_plants['plants_namemarket']; ?>" placeholder="ชื่อทางการตลาด" aria-describedby="namemarket" required>
                         </div>
                         <div class="mb-3">
                             <label for="detail" class="form-label">รายละเอียด</label>
-                            <textarea name="detail" class="form-control" cols="30" rows="5" placeholder="รายละเอียด" aria-describedby="detail" required><?= $edit_plantsgroup['plantsgroup_detail']; ?></textarea>
+                            <textarea name="detail" class="form-control" cols="30" rows="5" placeholder="รายละเอียด" aria-describedby="detail" required><?= $edit_plants['plants_detail']; ?></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="type" class="form-label">ลักษณะทั่วไป</label>
-                            <textarea name="type" class="form-control" cols="30" rows="5" placeholder="ลักษณะทั่วไป	" aria-describedby="type" required><?= $edit_plantsgroup['plantsgroup_type']; ?></textarea>
+                            <img src="<?= "uploads/plants/".$edit_plants['plants_img']; ?>" class=" my-3 w-100" alt="">
+                            <label for="img" class="form-label">รูปภาพประกอบ (Optional)</label>
+                            <input class="form-control" type="file" id="imgInput2" name="img" accept=".jpg, .jpeg, .png">
+                            <img id="previewImg2" class=" mt-3 w-100" alt="">
                         </div>
-                        <input type="hidden" name="id" value="<?= $edit_plantsgroup['plantsgroup_id']; ?>">
+                        <input type="hidden" name="img2" value="<?= $edit_plants['plants_img']; ?>">
+                        <input type="hidden" name="id" value="<?= $edit_plants['plants_id']; ?>">
                         <div class="mb-3 text-center">
                             <button type="submit" name="edit" class="btn btn-info">อัปเดต</button>
                         </div>
@@ -70,11 +96,11 @@ if (isset($_GET['id'])) { ?>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">เพิ่มสกุล</h5>
+                <h5 class="modal-title" id="exampleModalLabel">เพิ่มพันธุ์ไม้</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="plantsgroup_db.php" method="post">
+                <form action="plants_db.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="plantsfamily_name" class="form-label">วงศ์</label>
                         <select name="plantsfamily_name" class="form-select" required>
@@ -93,16 +119,38 @@ if (isset($_GET['id'])) { ?>
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="plantsgroup_name" class="form-label">สกุล</label>
+                        <select name="plantsgroup_name" class="form-select" required>
+                            <?php
+                            $stmt = $conn->query("SELECT * FROM plantsgroup");
+                            $stmt->execute();
+                            $plantsgroups = $stmt->fetchAll();
+                            if (!$plantsgroups) {
+                                echo '<option disabled>ไม่มีวงศ์</option>';
+                            } else {
+                                foreach ($plantsgroups as $plantsgroup) { ?>
+                                    <option value="<?= $plantsgroup['plantsgroup_name']; ?>">สกุล <?= $plantsgroup['plantsgroup_name']; ?></option>
+                            <?php }
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="name" class="form-label">ชื่อ</label>
                         <input type="text" name="name" class="form-control" placeholder="ชื่อ" aria-describedby="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="namemarket" class="form-label">ชื่อทางการตลาด (ไม่มีใส่ -)</label>
+                        <input type="text" name="namemarket" class="form-control" placeholder="ชื่อทางการตลาด" aria-describedby="namemarket" required>
                     </div>
                     <div class="mb-3">
                         <label for="detail" class="form-label">รายละเอียด</label>
                         <textarea name="detail" class="form-control" cols="30" rows="5" placeholder="รายละเอียด" aria-describedby="detail" required></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="type" class="form-label">ลักษณะทั่วไป</label>
-                        <textarea name="type" class="form-control" cols="30" rows="5" placeholder="ลักษณะทั่วไป	" aria-describedby="type" required></textarea>
+                        <label for="img" class="form-label">รูปภาพประกอบ</label>
+                        <input class="form-control" type="file" id="imgInput" name="img" required accept=".jpg, .jpeg, .png">
+                        <img id="previewImg" class=" mt-3 w-100" alt="">
                     </div>
                     <div class="mb-3 text-center">
                         <button type="submit" name="add" class="btn btn-success">เพิ่ม</button>
@@ -115,9 +163,30 @@ if (isset($_GET['id'])) { ?>
         </div>
     </div>
 </div>
+<script>
+    let imgInput = document.getElementById("imgInput")
+    let previewImg = document.getElementById("previewImg")
+
+    imgInput.onchange = evt => {
+        const [file] = imgInput.files
+        if (file) {
+            previewImg.src = URL.createObjectURL(file)
+        }
+    }
+
+    let imgInput2 = document.getElementById("imgInput2")
+    let previewImg2 = document.getElementById("previewImg2")
+
+    imgInput2.onchange = evt => {
+        const [file] = imgInput2.files
+        if (file) {
+            previewImg2.src = URL.createObjectURL(file)
+        }
+    }
+</script>
 <br><br>
 <p class="text-end">
-    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add">เพิ่มสกุล</button>
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add">เพิ่มพันธุ์ไม้</button>
 </p>
 <div class="content">
     <table class="table table-striped table-hover table-responsive text-center">
@@ -130,24 +199,23 @@ if (isset($_GET['id'])) { ?>
         </thead>
         <tbody>
             <?php
-            $stmt = $conn->query("SELECT * FROM plantsgroup ORDER BY plantsgroup_name ASC");
+            $stmt = $conn->query("SELECT * FROM plants ORDER BY plants_name ASC");
             $stmt->execute();
-            $plantsgroups = $stmt->fetchAll();
-            if (!$plantsgroups) {
+            $plants = $stmt->fetchAll();
+            if (!$plants) {
                 echo "<td colspan='2'>ไม่มีข้อมูล</td>";
             } else {
-                foreach ($plantsgroups as $plantsgroup) {
+                foreach ($plants as $plant) {
             ?>
                     <tr>
-                        <td><?= $plantsgroup['plantsgroup_name']; ?></td>
-                        <td><a href="./admin.php?q=manageplantsgroup&id=<?= $plantsgroup['plantsgroup_id']; ?>" class="btn btn-sm btn-warning">แก้ไข</a></td>
-                        <td><a data-id="<?= $plantsgroup['plantsgroup_id']; ?>" href="./plantsgroup_db.php?delete=<?= $plantsgroup['plantsgroup_id']; ?>" class="btn btn-sm btn-danger delete-btn">ลบ</a></td>
+                        <td><?= $plant['plants_name']; ?></td>
+                        <td><a href="./admin.php?q=manageplants&id=<?= $plant['plants_id']; ?>" class="btn btn-sm btn-warning">แก้ไข</a></td>
+                        <td><a data-id="<?= $plant['plants_id']; ?>" href="./plants_db.php?delete=<?= $plant['plants_id']; ?>" class="btn btn-sm btn-danger delete-btn">ลบ</a></td>
                     </tr>
             <?php
                 }
             }
             ?>
-
         </tbody>
     </table>
 </div>
@@ -171,7 +239,7 @@ if (isset($_GET['id'])) { ?>
             preConfirm: function() {
                 return new Promise(function(resolve) {
                     $.ajax({
-                            url: 'plantsgroup_db.php',
+                            url: 'plants_db.php',
                             type: 'GET',
                             data: 'delete=' + id,
                         })
@@ -181,7 +249,7 @@ if (isset($_GET['id'])) { ?>
                                 text: 'ลบข้อมูลแล้ว',
                                 icon: 'success',
                             }).then(() => {
-                                document.location.href = 'admin.php?q=manageplantsgroup';
+                                document.location.href = 'admin.php?q=manageplants';
                             })
                         })
                         .fail(function() {

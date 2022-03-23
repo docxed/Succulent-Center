@@ -97,7 +97,7 @@ if (isset($_POST['add'])) {
                     });
                 });
             </script>";
-            header("refresh:2; url=admin.php?q=manageplantsgroup&id=$id");
+            header("refresh:1; url=admin.php?q=manageplantsgroup&id=$id");
         } else {
             echo "<script>
                 $(document).ready(function() {
@@ -110,7 +110,7 @@ if (isset($_POST['add'])) {
                     });
                 });
             </script>";
-            header("refresh:2; url=admin.php?q=manageplantsgroup&id=$id");
+            header("refresh:1; url=admin.php?q=manageplantsgroup&id=$id");
         }
     } catch (PDOException $e) {
         echo $e->getMessage();

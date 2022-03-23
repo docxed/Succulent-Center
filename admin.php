@@ -19,6 +19,8 @@
                     include_once("./components/admins/manageplantsfamily.php");
                 } else if ($_GET['q'] == 'manageplantsgroup') {
                     include_once("./components/admins/manageplantsgroup.php");
+                } else if ($_GET['q'] == 'manageplants') {
+                    include_once("./components/admins/manageplants.php");
                 }
             }
             ?>

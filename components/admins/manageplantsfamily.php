@@ -86,7 +86,7 @@ if (isset($_GET['id'])) { ?>
         </thead>
         <tbody>
             <?php
-            $stmt = $conn->query("SELECT * FROM plantsfamily");
+            $stmt = $conn->query("SELECT * FROM plantsfamily ORDER BY plantsfamily_name ASC");
             $stmt->execute();
             $plantsfamilys = $stmt->fetchAll();
             if (!$plantsfamilys) {
