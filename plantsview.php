@@ -17,8 +17,19 @@
             <a href="<?= "uploads/plants/" . $plant['plants_img']; ?>" target="_blank"><img src="<?= "uploads/plants/" . $plant['plants_img']; ?>" class="w-55 mb-3 img-thumbnail" alt=""></a>
         </div>
         <p>ชื่อทางการตลาด <?= $plant['plants_namemarket'] ?></p>
-        <p>วงศ์ <?= $plant['plantsfamily_name'] ?></p>
-        <p>สกุล <?= $plant['plantsgroup_name'] ?></p>
+        <?php
+        $plantsfamily_name = $plant['plantsfamily_name'];
+        $stmt = $conn->query("SELECT * FROM plantsfamily WHERE plantsfamily_name = '$plantsfamily_name'");
+        $stmt->execute();
+        $plantsfamily = $stmt->fetch();
+
+        $plantsgroup_name = $plant['plantsgroup_name'];
+        $stmt = $conn->query("SELECT * FROM plantsgroup WHERE plantsgroup_name = '$plantsgroup_name'");
+        $stmt->execute();
+        $plantsgroup = $stmt->fetch();
+        ?>
+        <p>วงศ์ <a href="./plantsfamilyview.php?id=<?= $plantsfamily['plantsfamily_id'] ?>"><?= $plant['plantsfamily_name'] ?></a></p>
+        <p>สกุล <a href="./plantsgroupview.php?id=<?= $plantsgroup['plantsgroup_id'] ?>"><?= $plant['plantsgroup_name'] ?></a></p>
         <p class="h5">รายละเอียด</p>
         <p><?= $plant['plants_detail'] ?></p>
     </div>

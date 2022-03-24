@@ -75,7 +75,6 @@
                     </div>
                     <label for="fulladdress" class="form-label">ระแวกที่อยู่ในการตรวจสอบพันธุ์ไม้</label>
                     <div class="input-group mb-3">
-
                         <input type="text" name="fulladdress" class="form-control" placeholder="ป้อนที่อยู่เพื่อค้นหา" aria-describedby="button-addon2" id="autocomplete" required />
                         <button onclick="locatorButtonPressed()" class="btn btn-outline-danger" type="button" id="button-addon2">
                             <i class="fa-solid fa-location-crosshairs"></i>

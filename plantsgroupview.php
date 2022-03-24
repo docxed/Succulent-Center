@@ -13,7 +13,13 @@
     <hr>
     <br>
     <div class="fs-5">
-        <p>วงศ์ <?= $plantsgroup['plantsfamily_name'] ?></p>
+        <?php
+        $plantsfamily_name = $plantsgroup['plantsfamily_name'];
+        $stmt = $conn->query("SELECT * FROM plantsfamily WHERE plantsfamily_name = '$plantsfamily_name'");
+        $stmt->execute();
+        $plantsfamily = $stmt->fetch();
+        ?>
+        <p>วงศ์ <a href="./plantsfamilyview.php?id=<?= $plantsfamily['plantsfamily_id'] ?>"><?= $plantsgroup['plantsfamily_name'] ?></a></p>
         <p class="h4 mb-3">รายละเอียด</p>
         <p class="mb-3"><?= $plantsgroup['plantsgroup_detail'] ?></p>
         <p class="h4 mb-3">ลักษณะทั่วไป</p>

@@ -23,6 +23,8 @@
                     include_once("./components/admins/manageplants.php");
                 } else if ($_GET['q'] == 'manageplantsform') {
                     include_once("./components/admins/manageplantsform.php");
+                } else if ($_GET['q'] == 'manageshop') {
+                    include_once("./components/admins/manageshop.php");
                 }
             }
             ?>

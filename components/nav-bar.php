@@ -76,6 +76,7 @@
 
             <form class="d-flex" method="get" action="search.php">
                 <input class="form-control me-2" name="keyword" type="search" placeholder="ค้นหา" aria-label="Search" required>
+                <input type="hidden" name="type" value="all">
                 <button class="btn btn-light" name="search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>

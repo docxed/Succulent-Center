@@ -14,6 +14,8 @@
                 include_once("./components/changepassword.php");
             } else if ($_GET['q'] == 'form') {
                 include_once("./components/form.php");
+            } else if ($_GET['q'] == 'shop') {
+                include_once("./components/shop.php");
             }
         }
         ?>
