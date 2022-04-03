@@ -24,7 +24,7 @@
             <div id="map" class="m-auto mb-3 w-100"></div>
         </div>
 
-        <?php if ($_SESSION['login_level'] == 'admin') { ?>
+        <?php if (isset($_SESSION['login_level']) && $_SESSION['login_level'] == 'admin') { ?>
             <div class=" my-5 content">
                 <p class="h4 mb-3">ข้อมูลผู้ใช้</p>
                 <p>โดย <?= $shop['user_fname'] . ' ' . $shop['user_lname'] ?></p>
