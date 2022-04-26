@@ -2,9 +2,9 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 03, 2022 at 05:36 PM
--- Server version: 10.4.22-MariaDB
+-- Host: succulent.cmvpmls4fbve.us-east-1.rds.amazonaws.com
+-- Generation Time: Apr 26, 2022 at 01:53 PM
+-- Server version: 8.0.28
 -- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,128 +28,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `plants` (
-  `plants_id` int(11) NOT NULL COMMENT 'หมายเลขกำกับพันธุ์ไม้',
+  `plants_id` int NOT NULL COMMENT 'หมายเลขกำกับพันธุ์ไม้',
   `plants_name` varchar(255) NOT NULL COMMENT 'ชื่อพันธุ์ไม้',
   `plants_namemarket` varchar(255) DEFAULT NULL COMMENT 'ชื่อพันธุ์ไม้ทางการตลาด',
   `plants_detail` text NOT NULL COMMENT 'รายละเอียด',
   `plants_img` varchar(255) NOT NULL COMMENT 'รูปภาพ',
   `plantsfamily_name` varchar(255) NOT NULL COMMENT 'วงศ์',
   `plantsgroup_name` varchar(255) NOT NULL COMMENT 'สกุล',
-  `plants_timestamp` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'ประทับเวลาพันธุ์ไม้'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `plants`
---
-
-INSERT INTO `plants` (`plants_id`, `plants_name`, `plants_namemarket`, `plants_detail`, `plants_img`, `plantsfamily_name`, `plantsgroup_name`, `plants_timestamp`) VALUES
-(3, 'Arguroderma PearSonii', '-', '       อาร์จีโรเดอร์มา เพียร์โซนิอาย\r\nA. (N.E.Br.) Schwantes\r\nถิ่นกำเนิด แอฟริกาใต้', '1846071121.jpg', 'Aizoaceae', 'Argyroderma', '2022-03-23 11:28:50'),
-(5, 'Ammocharis Coranica', '-', '       แอมโมคาริส โครานิกา \r\nAmmocharis Coranica (Ker Gawl.) Herb, \r\nถิ่นกําเนิด ซิมบับเว แอฟริกาใต้ ', '1693171535.jpg', 'Amaryllidaceae', 'Ammocharis', '2022-03-23 12:27:46'),
-(6, 'Boophane Disticha', '-', '       บูเฟน ดิสติชา \r\nBoophane disticha (L.f.)', '262695984.jpg', 'Amaryllidaceae', 'Boophane', '2022-03-23 13:27:02'),
-(7, 'Gethyllis Linearis', '-', '       โกตีลลิส ไลเนียริส\r\nGethyllis linearis L.Bolus \r\nถิ่นกําเนิด แอฟริกาใต้', '110144193.jpg', 'Amaryllidaceae', 'Gethyllis', '2022-03-23 13:31:06'),
-(8, 'Adenium Arabicum', '-', '  ยอดีเนียม อาราบิคัม, ชวนชมยักษซาอุ Adenium arabicum Balf.f. ถิ่นกําเนิด ซาอุดีอาระเบีย เยเมน ปลูกเลี้ยงในเมืองไทยมานาน แต่ไม่ทราบแน่ชัดว่าเมื่อใด เดิมเข้าใจว่าชนิดนี้คือชวนชมยักษ์ ไซโคตรานัมที่พบเฉพาะบนเกาะโซโคตรา และเรียกกันว่า โซโคตรานัม กันจนติดปากในวงกว้าง ต่อมาจึงเพิ่มคําว่า “ไทย” เข้าไปเป็น \"Thai Socotraานา\" ปัจจุบันปรับปรุงพันธุ์อย่างแพร่หลาย และตั้งชื่อตามถิ่นที่ปรับปรุงพันธุ์ เช่น ยักษ์ลพบุรี เพชรบ้านนา เพชรเมืองคง หรือตามลักษณะพิเศษ เช่น ราชินีพันดอก เป็นต้น', '1389757237.jpg', 'Apocynaceae', 'Adenium', '2022-03-26 10:02:42'),
-(9, 'Adenium Boehmianum', '-', '   ออดีเนียม โบเอเมียนม \r\nA. boehmianum Schinz \r\nถิ่นกําเนิด นามิเบีย แองโกลา ออดีเนียม โดฟาเรนเซ, ชวนชมโอมาน ', '288166832.jpg', 'Apocynaceae', 'Adenium', '2022-03-26 10:05:39'),
-(10, 'Adenium Dhofarense', '-', 'A. dhofarense Rzepecky เป็นชนิดที่เพิ่งค้นพบเฉพาะในเขต Dhofar ทางตอนใต้ของโฮ และจัดทําคําบรรยายลักษณะเมื่อปี ค.ศ. 2015 ใบใหญ่ สีเข้มเป็นเงา และทิ้งใบในช่วงพักตัวแม่ให้น้ำอย่างสม่าเสมอ', '953021174.jpg', 'Apocynaceae', 'Adenium', '2022-03-26 10:06:38'),
-(11, 'Adenium Multiflorum', '-', ' อดีเนียม มัลติฟลอรัม \r\nA. multiflorum Klotzsch \r\nถิ่นกําเนิด แอฟริกาใต้ โมซัมบิก ซิมบับเว แซมเบีย ภาพ ชนินทร์ โกรัตน์', '677963581.jpg', 'Apocynaceae', 'Adenium', '2022-03-26 10:07:35'),
-(12, 'Adenium Obesum', '-', '   อดีเนียม โอเบซัม, ชวนชมฮอลแลนด์ \r\nA. obesum (Forssk.) Roem. &Schult. \r\nถิ่นกําเนิด แอฟริกาตะวันตกถึง แอฟริกาตะวันออก', '1051779472.jpg', 'Apocynaceae', 'Adenium', '2022-03-26 10:08:39'),
-(13, 'Aloinopsis Luckhoffii', '-', ' อะลอยนอปซิส ลัคฮอฟฟิอาย\r\nA. (L.Bolus) L.Bolus\r\nถิ่นกําเนิด แอฟริกาใต้', '1470146321.jpg', 'Aizoaceae', 'Aloinopsis', '2022-03-26 10:09:57'),
-(14, 'Aloinopsis Rosurata', '-', 'อะลอยนอปซิส โรซูลาตา\r\nA. rosulata (Kensit) Schwantes\r\nถิ่นกําเนิด แอฟริกาใต้\r\n', '903909597.jpg', 'Aizoaceae', 'Aloinopsis', '2022-03-26 10:10:53'),
-(15, 'Aloinopsis Rubrolineata', '-', '   อะลอยนอปซิส โบรไลเนียตา\r\nA. rubrolineata (N.E.Br.) Schwantes \r\nถิ่นกําเนิด แอฟริกาใต้', '482458984.jpg', 'Aizoaceae', 'Aloinopsis', '2022-03-26 10:13:40'),
-(16, 'Aloinopsis Schooneesii', '-', ' อะลอยนอปซิส ชูวันเอสซีอาย \r\nA. Schooneesii L.Bolus \r\nถิ่นกําเนิด แอฟริกาใต้', '374996194.jpg', 'Aizoaceae', 'Aloinopsis', '2022-03-26 10:14:47'),
-(17, 'Ballyanthus Prognathus', '-', '  บัลลีแอนทัส พร็อกนาทัส \r\nBallyanthus prognathus (P.R.O.Bally) Bruyns', '626670939.jpg', 'Apocynaceae', 'Ballyanthus', '2022-03-26 10:16:16'),
-(18, 'Baynesia Lophophora', '-', ' เบย์นีเซีย โลโฟโฟรา\r\nBaynesia lophophora Bruyns', '998439166.jpg', 'Apocynaceae', 'Baynesia', '2022-03-26 10:17:36'),
-(19, 'Bergeranthus Multiceps', '-', ' เบอร์กีแรนทัส มัลติเซ็ปส์, ม้าอ่อน \r\nBergeranthus multiceps (Salm-Dyck) Schwantes \r\nถิ่นกําเนิด แอฟริกาใต้', '1086703659.jpg', 'Aizoaceae', 'Bergeranthus', '2022-03-26 10:22:57'),
-(20, 'Bergeranthus Vespertinus', '-', ' เบอร์กีแรนทัส เวสเปอร์ที่นัส, ม้านิ่ม\r\nB. vespertinus (Berger) Schwantes \r\nถิ่นกําเนิด แอฟริกาใต้', '1446965749.jpg', 'Aizoaceae', 'Bergeranthus', '2022-03-26 10:23:54'),
-(21, 'Bljlia Cana', '-', '  บิจเลีย คานา \r\nBljlia cana (Haw.) N.E.Br.\r\nพบเฉพาะบริเวณแคบ ๆ ในประเทศแอฟริกาใต้', '811473986.jpg', 'Aizoaceae', 'Bijlia', '2022-03-26 10:24:38'),
-(22, 'Braunsia Apiculata', '-', ' บรานเซีย เอพีคูลาตา\r\nBraunsia Apiculata (Kensit) L.Bolus\r\nพบเฉพาะในประเทศแอฟริกาใต้เท่านั้น', '878220964.jpg', 'Aizoaceae', 'Braunsia', '2022-03-26 10:25:18'),
-(23, 'Braunsia Maximillan', '-', '  บรานเซีย แม็กซิมิเลียน\r\nB, maximilian (Schltr. & Berger) Schwantes\r\nแอฟริกาใต้\r\n', '135667997.jpg', 'Aizoaceae', 'Braunsia', '2022-03-26 10:25:50'),
-(24, 'Caralluma Burchardi', '-', ' คารัสลมา เบอร์ชาร์ดิอาย โมรา \r\nC. burchardi subsp. mgura (Maire) Meve & F.Albers \r\nถิ่นกําเนิด โมร็อกโก', '1395695756.jpg', 'Apocynaceae', 'Caralluma', '2022-03-26 10:26:24'),
-(25, 'Caralluma Crenulata', '-', ' ฮิคารัลลมา ครีนลาตา, เพชรตาแมว \r\nC. Crenulata Wall \r\nถิ่นกําเนิด พม่า อินเดีย', '1045038947.jpg', 'Apocynaceae', 'Caralluma', '2022-03-26 10:26:57'),
-(26, 'Carallumd Adscendens', '-', 'คารัลสุมา แอดส์เซนเดนส์ ฟิมเบรียตา \r\nCarallumd adscendens var. fimbriata (Wall.) Gravely & Magur. \r\nถิ่นกําเนิด เอเชียตะวันออกเฉียงใต้', '1603565796.jpg', 'Apocynaceae', 'Caralluma', '2022-03-26 10:27:32'),
-(27, 'Carpobrotus Edulis', '-', ' คาร์โปโบรตัส เอดูลิส\r\nCarpobrotus edulis (L.) N.E.Br.\r\nถิ่นกําเนิด แอฟริกาใต้\r\n', '1502319592.jpg', 'Aizoaceae', 'Carpobrotus', '2022-03-26 10:28:03'),
-(28, 'Carruanthus Peersii', '-', ' คาร์รูแอนทัส แพร์ซิอาย \r\nCarruanthus peersis L.Bolus\r\nแอฟริกาใต้ ', '17536042.jpg', 'Aizoaceae', 'Carruanthus', '2022-03-26 10:28:37'),
-(29, 'Ceropegia Africana', '-', ' เซโรพีเจีย แอฟริกานา บาร์คลอาย \r\nC. africana R.Br. ssp. barklyi (Hook.f) Br\r\nถิ่นกําเนิด ตะวันออกของแอฟริกาใต้', '41336488.jpg', 'Apocynaceae', 'Ceropegia', '2022-03-26 10:29:12'),
-(30, 'Ceropegia Conrathii', '-', ' อเซโรพีเจีย คอนราที่อาย \r\nC. Conrathi Schltr. \r\nถิ่นกําเนิด แอฟริกาใต้ บอตสวานา และซิมบับเว', '1958527787.jpg', 'Apocynaceae', 'Ceropegia', '2022-03-26 10:29:46'),
-(31, 'Ceropegia Dichotoma', '-', ' เซโรพีเจีย ไดโซโตมา ฟูสกา \r\nCeropegia dichotoma subsp. fusca (Bolle) G.D.Rowley \r\nถิ่นกําเนิด พบเฉพาะหมู่เกาะคะแนรี', '252764690.jpg', 'Apocynaceae', 'Ceropegia', '2022-03-26 10:35:01'),
-(32, 'Ceropegia Linearis', '-', ' เซโรพีเจีย ไลเนียริส วูดอาย, สายป่านดวงใจ \r\nC, linearis E.Meg. ssp. Woodii (Schitr.) H.Huber \r\nถิ่นกําเนิด ตอนใต้ของทวีปแอฟริกา', '1238221022.jpg', 'Apocynaceae', 'Ceropegia', '2022-03-26 10:36:18'),
-(33, 'Ceropegia Linearis Woodii', '-', '  สายป่านดวงใจ (ต่าง) C. linearis ssp. woodii ', '518626036.jpg', 'Apocynaceae', 'Ceropegia', '2022-03-26 10:37:06'),
-(34, 'Ceropegia Sandersonii', '-', '  เซโรพีเจีย แซนเดอโซนอาย \r\nC. sandersonii Decne.ex Hook \r\nถิ่นกําเนิด แอฟริกาใต้ โมซัมบิก', '1558153244.jpg', 'Apocynaceae', 'Ceropegia', '2022-03-26 10:39:38'),
-(35, 'Ceropegia Variegata', '-', 'โรพีเจีย วาเรียกาตา \r\nC. Variegata Decne. \r\nถิ่นกําเนิด เอธิโอเปีย เคนยา', '299119354.jpg', 'Apocynaceae', 'Ceropegia', '2022-03-26 10:40:20'),
-(36, 'Cibirhiza Albersiana', '-', ' ซิบิไรซา แอลเบอร์เซียนา \r\nCibirhiza albersiana Kunz, Meve & Liede \r\nถิ่นกําเนิด แทนซาเนีย แซมเบีย', '595709545.jpg', 'Apocynaceae', 'Cibirhiza', '2022-03-26 10:41:17'),
-(37, 'Conophytum Devium', '-', ' โคโนไฟตัม เดเวียม\r\nC. devium G.D.Rowley\r\nถิ่นกำเนิด นามาควาแลนด์', '463680578.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:41:54'),
-(38, 'Conophytum Maughanii \'Armaeniacum\'', '-', ' โคโนไฟตัม มอกานิอาย \'อาร์เมเนียคัม\'\r\nC. maughanii \'Armaeniacum\'\r\n', '681143123.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:42:28'),
-(39, 'Conophytum \'Hanse Sterkstroom\'', '-', ' โคโนไฟตัม \'แฮนส์ สเติร์กสตรูม\'\r\nConophytum \'Hanse Sterkstroom\'', '783614780.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:43:00'),
-(40, 'Conophytum \'Sakuragai\'', '-', ' โคโนไฟตัม \'ซากุราไก\'\r\nConophytum \'Sakuragai\'', '521269885.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:43:26'),
-(41, 'Conophytum Burgeri', '-', ' โคโนไฟตัม เบอร์เกอรี\r\nC. burgeri L.Botus\r\nถิ่นกำเนิด นามาควาแลนด์', '1165157385.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:44:13'),
-(42, 'Conophytum Globosum', '-', ' โคโนไฟตัม โกลโบซัม\r\nC. globosum (N.E.Br.) N.E.Br.\r\nถิ่นกำเนิด นามาควาแลนด์', '1449462451.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:49:49'),
-(43, 'Conophytum Gratum', '-', ' โคโนไฟตัม กราตัม\r\nC. gratum (N.E.Br.) N.E.Br.\r\nถิ่นกำเนิด นามิเบีย', '2062635961.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:50:37'),
-(44, 'Conophytum Marginatum', '-', ' โคโนไฟตัม มาร์จินนาตัม\r\nC. marginatum Lavis\r\nถิ่นกำเนิด นามาควาแลนด์ถึงแอฟริกาใต้', '56343244.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:51:07'),
-(45, 'Conophytum Maughanii', '-', 'โคโนไฟตัม มอกานิอาย\r\nC. maughanii N.E.Br.\r\nถิ่นกำเนิด แอฟริกาใต้', '706931023.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:51:57'),
-(46, 'Conophytum Meyeri', '-', ' โคโนไฟตัม เมเยอรี\r\nC. meyeri N.E.Br.\r\nถิ่นกำเนิด แอฟริกาใต้', '71762055.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:53:03'),
-(47, 'Conophytum Minimum', '-', ' โคโนไฟตัม มินิมัม\r\nC. minimum (Haw.) N.E.Br.\r\nถิ่นกำเนิด นามาควาแลนด์ถึงแอฟริกาใต้', '651337787.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:54:02'),
-(48, 'Conophytum Obcordellum', '-', 'โคโนไฟตัม อ็อบคอร์เดลลัม\r\nC. obcordellum (Haw.) N.E.Br.\r\nถิ่นกำเนิด แอฟริกาใต้', '994658765.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:55:08'),
-(49, 'Conophytum Obscurum', '-', ' โคโนไฟตัม อ็อบสกูรัม\r\nC. obscurum N.E.Br.\r\nถิ่นกำเนิด ตอนเหนือของแอฟริกาใต้', '2146862153.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:55:51'),
-(50, 'Conophytum Taylorianum', '-', 'โคโนไฟตัม เทย์เลอเรียนัม เออร์เนียนัม\r\nC. taylorrianum (Dinter & Schwantes) subsp. ernianum\r\n(Loesch & Tischer) de Boer ex S.A.Hammer\r\nถิ่นกำเนิด นามิเบีย', '620202044.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:56:37'),
-(51, 'Conophytum Taylorianum Erianum', '-', ' โคโนไฟตัม เทย์เลอเรียนัม เออร์เนียนyม \r\nC. taylorianum (Dinter & Schwantes) subsp. erianum (Loesch & Tischer) de Boer ex S.A.Hammer \r\nถิ่นกําเนิด นามิเบีย', '2022476578.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:58:34'),
-(52, 'Conophytum Uvaeforme Subincanum', '-', 'โคโนไฟตัม ยูเวฟอร์เม ซับอินคานัม \r\nC. uvaeforme (Haw.) N.E.Br. Subsp. Subincanum (Tischer) S.A.Hammer \r\nถิ่นกําเนิด ตอนเหนือของแอฟริกาใต้', '1169294897.jpg', 'Aizoaceae', 'Conophytum', '2022-03-26 10:59:12'),
-(53, 'Corpuscularia Lehmanni', '-', '  คอร์ปุสคูลาเรีย ลีห์แมนนิอาย\r\nCorpuscularia lehmanni (Eckl. & Zeuh.) Schwantes\r\nถิ่นกําเนิด แอฟริกาใต้ เป็นพืชต้นแบบของสกุลและปลูกเลี้ยงแพร่หลายที่สุด ในธรรมชาติพนในพื้นที่เพียง 70 ตารางกิโลเมตร เดิมมีบันทึกว่าพบเพียง 6 แห่ง ปัจจุบันเหลือเพียง 2 แห่งเท่านั้น และยังคงลดจํานวนลงเรื่อย ๆ จากการทําเหมือง อยู่ในสภาวะที่เสี่ยงต่อการสูญพันธุ์', '655735421.jpg', 'Aizoaceae', 'Corpuscularia', '2022-03-26 10:59:49'),
-(54, 'Cynanchum Marnierianum', '-', 'ไซแนนคุม มาร์นีเรียนม \r\nC. marnierianum Rauh \r\nถิ่นกําเนิด มาดากัสการ์ ภาพ สิทธิศักดิ์ น้ําคํา', '1160500043.jpg', 'Apocynaceae', 'Cynanchum', '2022-03-26 11:00:23'),
-(55, 'Delosperma \'Fire Spinner\'', '-', 'ดีโลสเปอร์มา \'ไฟร์สปินเนอร์\'\r\nDelosperma \'Fire Spinner\'\r\nถิ่นกำเหนิด แอฟริกาใต้', '1350766217.jpg', 'Aizoaceae', 'Delosperma', '2022-03-26 11:00:58'),
-(56, 'Delosperma \'Weels Of Wonder\'', '-', 'ดีโลสเปอร์มา \'วีลส์ออฟวันเดอร์\'\r\nDelosperma \'Weels of Wonder\'\r\nถิ่นกำเหนิด แอฟริกาใต้', '396272036.jpg', 'Aizoaceae', 'Delosperma', '2022-03-26 11:02:18'),
-(57, 'Delosperma Sphalmanthoides', '-', ' ดีโลสเปอร์มา สปัสแมนทอยเดส\r\nDelosperma Sphalmanthoides S.A.Hammer\r\nถิ่นกำเหนิด แอฟริกาใต้', '1563931152.jpg', 'Aizoaceae', 'Delosperma', '2022-03-26 11:02:52'),
-(58, 'Dinteranthus Microspermus Puderulus', '-', ' ดินทีแรนทัส ไมโครสเปอร์มัส พูเบรูลัส\r\nDinteranthus microspermus (Dinter & Derend.) Schwantes subsp. puderulus\r\nถิ่นกำเหนิด  ตะวันออกเฉียงใต้ของนามิเบียถึงแอฟริกาใต้', '713564656.jpg', 'Aizoaceae', 'Dinteranthus', '2022-03-26 11:03:43'),
-(59, 'Dischidia Ruscifolia', '-', ' ดิสซิเดีย รัสซิโฟเลีย, หัวใจล้านดวง \r\nDischidia ruscifolia Decne. ex Bao \r\nถิ่นกําเนิด ฟิลิปปินส์และป่าดิบชื้นในปาปัวน\r\nมีชื่อสามัญว่า Million Heart ตามรูปทอง', '2135894840.jpg', 'Apocynaceae', 'Dischidia', '2022-03-26 11:04:20'),
-(60, 'Dischidiopsis Philippinensis', '-', ' ดิสซิไดอ็อปซิส ฟิลิปปิเนนซิส, เดปใบยาวดอกแดง \r\nDischidiopsis philippinensis Schltr. \r\nถิ่นกําเนิด ฟิลิปปินส์', '633311150.jpg', 'Apocynaceae', 'Dischidiopsis', '2022-03-26 11:04:56'),
-(61, 'Duvalia Polita', '-', 'ดูวาเลีย โพลิตา \r\nDuvalia polita N.E.Br. \r\nถิ่นกําเนิด บอตสวานา มาลาวี แซมเบีย แองโกลา นามิเบีย ภาพ กาลส สุมนันทนานนท์', '1090692659.jpg', 'Apocynaceae', 'Duvalia', '2022-03-26 11:06:42'),
-(62, 'Duvaliandra Dioscoridis', '-', ' ดูวาเสียนดรา ไดออสคอริติส \r\nDuvaliandra dioscoridis (Lavranos) M.G.Gilbert\r\n', '1007267535.jpg', 'Apocynaceae', 'Duvaliandra', '2022-03-26 11:07:44'),
-(63, 'Echidnopsis Malum', '-', ' อิชิดนอปซิส มาลัม\r\nEchidnopsis malum (Lavranos) Bruyns \r\nถิ่นกําเนิด โซมาเลีย ภาพ Cree K', '677924774.jpg', 'Apocynaceae', 'Echidnopsis', '2022-03-26 11:08:25'),
-(64, 'Edithcolea Grandis', '-', '  กอดทโคเลีย แกรนดิส, พรมเปอร์เซีย\r\nEdithcolea grandis N.E.Br.', '1043849965.jpg', 'Apocynaceae', 'Edithcolea', '2022-03-26 11:08:54'),
-(65, 'Edithcolea Somalia', '-', '   อีดิทโคเสียจากโซมาเลีย \r\nEdithcolea sp. \"Somalia\"', '1549162971.jpg', 'Apocynaceae', 'Edithcolea', '2022-03-26 11:09:26'),
-(66, 'Faucaria Tigrina', '-', 'ฟอคาเรีย ไทกรินา\r\nFaucaria tigrina (Haw.) Schwantes\r\nถิ่นกำเหนิด แอฟริกาใต้', '1619840569.jpg', 'Aizoaceae', 'Faucaria', '2022-03-26 11:10:04'),
-(67, 'Faucaria Tuberculosa', '-', ' ฟอคาเรีย ทูเบอร์คูโลซา\r\nF. tuberculosa (Rolfe) Schwantes\r\nถิ่นกำเหนิด แอฟริกาใต้', '775717674.jpg', 'Aizoaceae', 'Faucaria', '2022-03-26 11:10:48'),
-(68, 'Faucaria Tuberculosa \'Super Warty\'', '-', 'ฟอคาเรีย ทูเบอร์คูโลซา \'ซุปเปอร์วาร์ไรตี้\'\r\nF. Tuberculosa \'super warty\'\r\nถิ่นกำเหนิด แอฟริกาใต้', '219682117.jpg', 'Aizoaceae', 'Faucaria', '2022-03-26 11:13:46'),
-(69, 'Fenestraria Rhopalophylla Aurantiaca', '-', ' เฟเนสตราเรีย โรปาโลฟิลลา ออรันเทียกา\r\nFenestraria rhopalophylla sudsp. aurantiaca (N.E.Br.) H.E.K.Hartmann\r\nถิ่นกำเหนิด นามิเบียและแอฟริกาใต้', '246798352.jpg', 'Aizoaceae', 'Fenestraria', '2022-03-26 11:14:22'),
-(70, 'Frerea Indica', '-', ' เฟรเรีย อินดิกา Frerea indica Dalzell\r\nถิ่นกําเนิด อินเดีย\r\n', '846721703.jpg', 'Apocynaceae', 'Frerea', '2022-03-26 11:14:57'),
-(71, 'Frithia Humilis', '-', ' ฟริเทีย ฮุมิลิส\r\nFrithia humilis Burgoyne', '1844462725.jpg', 'Aizoaceae', 'Frithia', '2022-03-26 11:15:53'),
-(72, 'Frithia Pulchra', '-', ' ฟริเทีย พูลชรา \r\nFrithia pulchra N.E.Br.', '1696722175.jpg', 'Aizoaceae', 'Frithia', '2022-03-26 11:16:56'),
-(73, 'Glottiphyllum Longum', '-', '   กล็อตทิไฟลัม ลองกัม\r\nGlottiphyllum longum (Haw.) N.E.Br.\r\nชื่อระบุชนิดมาจากภาษาละติน แปลว่า แคระ สื่อถึงลักษณะต้นที่เล็ก ใบป้อมสั้นดูแคระ ถิ่นกำเนิด แอฟริกาใต้', '1281512954.jpg', 'Aizoaceae', 'Glottiphyllum', '2022-03-26 11:17:44'),
-(74, 'Glottiphyllum Nelii', '-', '  กล็อตทิไฟลัม เนสิอาย ปิกเมียม\r\nG. nelii Schwantes \'Pygmeum\'', '1480201126.jpg', 'Aizoaceae', 'Glottiphyllum', '2022-03-26 11:20:23'),
-(75, 'Glottiphyllum Nelii \'Pygmeum\'', '-', 'กล็อตทิไฟลัม เนลิอาย \r\nG. Nelii Schwantes \'Pygmeum\'\r\nถิ่นกำเหนิด แอฟริกาใต้', '948414231.jpg', 'Aizoaceae', 'Glottiphyllum', '2022-03-26 11:20:58'),
-(76, 'Haemanthus Humilis', '-', ' เฮแมนทัส ฮูมิลิส (ฟอร์มใหญ่) \r\nHaemanthus humilis Jacq. (giant form) \r\nถิ่นกําเนิด แอฟริกาใต้ ', '1600638794.jpg', 'Amaryllidaceae', 'Haemanthus', '2022-03-26 11:21:35'),
-(77, 'Hereroa AFF. Incurva', '-', ' เฮเรรัว เอเอฟเอฟ อินเคอร์วา\r\nHereroa aff. incurva\r\nถิ่นกำเหนิด นามิเบียและแอฟริกาใต้', '269601407.jpg', 'Aizoaceae', 'Hereroa', '2022-03-26 11:22:24'),
-(78, 'Hoya Caudata', '-', '  โฮย่า คอดาตา \r\nH. Caudata Hook.f. \r\nถิ่นกําเนิด ภาคใต้ของไทยและมาเลเซีย', '1758151710.jpg', 'Apocynaceae', 'Hoya', '2022-03-26 11:24:52'),
-(79, 'Hoya Chunii', '-', ' โฮย่า ชูนิอาย \r\nH. chunii PT.Li \r\nถิ่นกําเนิด ปาปัวนิวกินี ตาราบางเล่มจัดเป็นชื่อพ้องของ H. raticulata', '1742383192.jpg', 'Apocynaceae', 'Hoya', '2022-03-26 11:29:04'),
-(80, 'Hoya Cinnamomifolia', '-', ' โฮย่า ซินนาโมมิฟอเลีย \r\nH. cinnamomifolia Hook.f. \r\nถิ่นกําเนิด เกาะชวาในอินโดนีเซีย', '1349499081.jpg', 'Apocynaceae', 'Hoya', '2022-03-26 11:29:37'),
-(81, 'Hoya Kerrii', '-', '   ณ โฮย่า เคอร์ร็อาย, ต้าง, หัวใจทศกัณฐ์, โฮย่าใบหัวใจ H. kerrii Craib ถิ่นกําเนิด ไทย ลาว กัมพูชา เวียดนาม เป็นไม้ป่าพื้นบ้านของไทยที่นํามาปลูกเลี้ยงจนกลายเป็นไม้ประดับที่แพร่หลาย ด้วยความโดดเด่นของใบรูปหัวใจ จึงมีชื่อ สามัญว่า Sweethearf Hoga, Valentine Houd ซึ่งได้รับความนิยมมาก แต่ละช่อมี 10 - 20 ดอก เส้นผ่านศูนย์กลางดอก ประมาณ 8 มิลลิเมตร มักปรากฏน้ําหวานอยู่ตามเส้าเกสร กลิ่นหอมตอนกลางคืน ปัจจุบันมีพันธุ์ใบด่างหลายรูปแบบ ทั้งด่างกลางใบ ต่างขอบใบ และต่างปืนกระจายทั่วใบ ออกดอกช่วงปลายฤดูหนาวเข้าฤดูร้อน เลี้ยงง่าย โตเร็ว ทนแล้ง', '1163479661.jpg', 'Apocynaceae', 'Hoya', '2022-03-26 11:30:08'),
-(82, 'Lithops Aucampiae', '-', ' ไลท็อปส์ ออแคมเปีย\r\nL. aucampiae L. Bolus\r\nถิ่นกำเนิด แอฟริกาใต้', '715844306.jpg', 'Aizoaceae', 'Lithops', '2022-03-26 11:30:39'),
-(83, 'Lithops Bromfieldii', '-', ' ไลท็อปส์ บรอมฟีลดิอาย\r\nL. bromfieldii L.Bolus\r\nถิ่นกำเนิด แอฟริกาใต้', '2038219713.jpg', 'Aizoaceae', 'Lithops', '2022-03-26 14:43:52'),
-(84, 'Lithops Bromfieldii Glaudinae', '-', ' ไลท็อปส์ บรอมฟีลดิอาย กลอดิเน\r\nL. bromfieldii var. glaudinae', '1976318387.jpg', 'Aizoaceae', 'Lithops', '2022-03-26 14:44:46'),
-(85, 'Lithops Comptonii Weberi', '-', 'ไลท็อปส์ คอมพ์โตนิอาย เวเบอรี\r\nL. comptonii var. weberi', '1638013016.jpg', 'Aizoaceae', 'Lithops', '2022-03-26 14:45:31'),
-(86, 'Lithops Dorotheae', '-', '  ไลท็อปส์ โดโรเท\r\nL. dorotheae Nel\r\nถิ่นกำเนิด แอฟริกาใต้', '22764633.jpg', 'Aizoaceae', 'Lithops', '2022-03-26 14:46:03'),
-(87, 'Lithops Fulleri', '-', ' ไลท็อปส์ ฟูลเลอรี\r\nL. fulleri N.E.Br.\r\nถิ่นกำเนิด แอฟริกาใต้', '1199296758.jpg', 'Aizoaceae', 'Lithops', '2022-03-26 14:46:34'),
-(88, 'Lithops Fulviceps', '-', ' ไลท็อปส์ ฟูลวิเซ็ปส์\r\nL. fulviceps N.E.Br.\r\nถิ่นกำเนิดแอฟริกาใต้', '837482527.jpg', 'Aizoaceae', 'Lithops', '2022-03-26 14:47:05'),
-(89, 'Lithops Hallii', '-', '  ไลท็อปส์ ฮัลลิอาย\r\nL. hallii de Boer\r\nถิ่นกำเนิดแอฟริกาใต้', '1883135704.jpg', 'Aizoaceae', 'Lithops', '2022-03-26 14:47:56'),
-(90, 'Lithops Julii', '-', 'ไลท็อปส์ จูลิอาย\r\nL. julii N.E.Br.\r\nถิ่นกำเนิด แอฟรคิกาใต้', '1807274428.jpg', 'Aizoaceae', 'Lithops', '2022-03-26 14:49:04'),
-(91, 'Lithops Karasmontana', '-', 'ไลท็อปส์ คาราสมอนทานา\r\nL. karasmontana N.E.Br.\r\nถิ่นกำเนิด นามิเบีย', '1133284081.jpg', 'Aizoaceae', 'Lithops', '2022-03-26 14:49:37'),
-(92, 'Lithops Lesliei', '-', 'ไลท็อปส์ เลสลิอาย\r\nL. lesliei (N.E.Br.) N.E.Br.\r\nถิ่นกำเนิด แอฟริกาใต้', '314780500.jpg', 'Aizoaceae', 'Lithops', '2022-03-26 14:50:21'),
-(93, 'Lithops Viridis', '-', ' ไลท็อปส์ วิริดิส\r\nL. viridis C.A.Luckh\r\nถิ่นกำเนิดแอฟริกาใต้', '1932934206.jpg', 'Aizoaceae', 'Lithops', '2022-03-26 14:51:04'),
-(94, 'Mesembryanthemum Cordifolium', '-', ' เมเซมไบรอันที่มัม คอร์ติโฟเลียม, เบบี้โรส Mesembryanthemum cordifolium L.f. ถิ่นกําเนิด แอฟริกาใต้ เดิมจัดอยู่ในสกุลแอ๊ปที่เมีย (Aptemia) ส่วนชื่อไทยที่เรียกกันว่า \"เบบี้โรส มีที่มาจากชื่อสามัญว่า Baby Sun Rose ลําต้นทอดเลื้อย ใบรูปหัวใจสีเขียว ดอกเล็ก กลีบดอกเรียวเล็ก พันธุ์ดั้งเดิมดอกสีชมพูอมม่วง มีการกลายเป็นสีอื่นที่เพี้ยนไปจากเดิมเล็กน้อย ส่วนชนิด ดอกสีแดงนั้นคาดว่าเป็นลูกผสมระหว่าง M. cordifolia และ M. haeckelianum ที่ชื่อว่า\r\nMesembryanthemum Red Apple ตลาดต้นไม้ในเมืองไทยมักขายปนกันหลายสีในชื่อ เดียวกัน ในธรรมชาติพบขึ้นที่ความสูง 20 - 800 เมตรเหนือระดับทะเล ชาวพื้นเมือง ในแอฟริกาใช้เป็นเครื่องรางสําหรับความรักและความโชคดี ทนร้อน ปรับตัวและปลูกเลี้ยง ในเมืองไทยได้ดี แต่เป็นพืชต่างถิ่นที่รุกรานพืชพื้นเมืองในรัฐแคลิฟอร์เนีย สหรัฐอเมริกา ชอบแดด นิยมขยายพันธุ์โดยการปักชํากิ่ง', '562621146.jpg', 'Aizoaceae', 'Mesembryanthemum', '2022-03-26 14:51:47'),
-(95, 'Mesembryanthemum Crystallinum', '-', ' เมเซมไบรอันทีมัม คริสตัลลินัม\r\nM. crystallinum L.\r\nถิ่นกำเนิด ทวีฟยุโรปและทวีปแอฟริกา', '1073821508.jpg', 'Aizoaceae', 'Mesembryanthemum', '2022-03-26 14:52:35'),
-(96, 'Mesembryanthemum Haeckelianum', '-', ' เมเซมไบรอันทีมัม เฮคเคเลียนัม, เบบี้โรสดอกเหลือง\r\nM. mesembryanthemum A.Berger\r\nถิ่นกำเนิดแอฟริกาใต้', '40006070.jpg', 'Aizoaceae', 'Mesembryanthemum', '2022-03-26 14:53:13'),
-(97, 'Nananthus Aloides', '-', ' นาแนนทัส อะลอยเดส\r\nNananthus aloides (Haw.) Schwantes\r\nถิ่นกำเนิด บอดสวานา แอฟริกาใต้', '588965264.jpg', 'Aizoaceae', 'Nananthus', '2022-03-26 14:54:00'),
-(98, 'Nananthus Transvaalensis', '-', ' N. transvaalensis (Rolfe) Schwantes\r\nถิ่นกำเนิด แอฟริกาใต้', '1012929506.jpg', 'Aizoaceae', 'Nananthus', '2022-03-26 14:54:45'),
-(99, 'Odontophorus Angustifolius', '-', '  โอดอนโทฟอรัส แองกัสติฟอเลียส \r\nOdontophorus angustifolius L. Bolus\r\nถิ่นกําเนิด แอฟริกาใต้', '801330238.jpg', 'Aizoaceae', 'Odontophorus', '2022-03-26 14:55:51'),
-(100, 'Operculicarya Borealis', '-', '  โอเปอร์คลิคาร์ยา บอเรียลิส \r\nOperculicarya borealis Eggli \r\nถิ่นกําเนิด ตะวันออกเฉียงเหนือของมาดากัสการ์', '54845603.jpg', 'Amaryllidaceae', 'Operculicarya', '2022-03-26 14:56:33'),
-(101, 'Opophytum Aquosum', '-', ' โอโปไฟต้ม อโควซัม\r\nOpophytum aquosum (L.Bolus) L. Bolus\r\nถิ่นกําเนิด นามิเบีย แอพริกา', '2052642614.jpg', 'Aizoaceae', 'Opophytum', '2022-03-26 14:57:19'),
-(102, 'Pleiospilos Nelii', '-', ' เพลโอสไปลอส เนลิอาย \r\nPleiospilos neli Schwantes \r\nถิ่นกําเนิด แอฟริกาใต้', '306758361.jpg', 'Aizoaceae', 'Pleiospilos', '2022-03-26 14:58:03'),
-(103, 'Rhombophyllum Dolabriforme', '-', 'รอมโบไฟลัม โดสาบริฟอร์เม \r\nRhombophyllum dolabriforme Schwantes \r\nถิ่นกําเนิด แอฟริกาใต้ ', '988348837.jpg', 'Aizoaceae', 'Rhombophyllum', '2022-03-26 14:59:00'),
-(104, 'Schizobasis Intricata', '-', ' ซีโซเบซิส อินทริคกตา \r\nSchizobasis intricata (Baker) Baker \r\nถิ่นกําเนิด เอธิโอเปีย แทนซาเนีย แซมเบีย แองโกลา นามิเบีย ซิมบับเว โมซัมบิก แอฟริกาใต้ มีรายงาดเล็กโผล่เหนือดิน เมื่อยังเล็กจะมีโอกาวยาวงอกออกจากหัว 1 - 2 ใบ แต่เมื่อเติบโตขึ้นจะแตกกิ่งก้านจํานวนมากและทอดเลื้อย จึงมีชื่อเรียกกันว่า Climbing Onlin ปลูกเลี้ยงและออกดอกได้ง่ายในเมืองไทย', '1376685356.jpg', 'Asparagaceae', 'Schizobasis', '2022-03-26 15:00:04'),
-(105, 'Titanopsis Primosii', '-', 'ไททาน็อปซิส พรีโมซิอาย\r\nT. primosii L. Bolus\r\nถิ่นกำเนิด แอฟริกาใต้', '1622019495.jpg', 'Aizoaceae', 'Titanopsis', '2022-03-26 15:03:27'),
-(106, 'Titanopsis Schwantesii', '-', ' ไททาน็อปซิส ชวานแตซิอาย\r\nT. schwantesii Schwantes\r\nถิ่นกำเนิด แอฟริกาใต้', '803878345.jpg', 'Aizoaceae', 'Titanopsis', '2022-03-26 15:04:43'),
-(107, 'Trichodiadema Bulbosum', '-', ' ไตรโคเดียดีมา บัลโบซัม\r\nT. bulbosum Schwantes\r\nถิ่นกำเนิด แอฟริกาใต้', '152901610.jpg', 'Aizoaceae', 'Trichodiadema', '2022-03-26 15:06:08'),
-(108, 'Trichodiadema Densum', '-', '  ไตรโคเดียดีมา เดนซัม \r\nTrichodiadema densum Schwantes \r\nถิ่นกําเนิด แอฟริกาใต้', '502162642.jpg', 'Aizoaceae', 'Trichodiadema', '2022-03-26 15:08:19'),
-(109, 'Veltheimia Bracteata', '-', ' เวลไทเมีย แบร็คเทียตา \r\nVeltheimia bracteata Harv. ex Baker', '1956543737.jpg', 'Asparagaceae', 'Veltheimia', '2022-03-26 15:09:00'),
-(110, 'Yucca Endlichiana', '-', '  ยุกกา เอนดลิเชียนา\r\nYucca endlichiana Trel.\r\nถิ่นกําเนิด พบในทะเลทรายซิวสวนในเม็กซิโก ตั้งชื่อโดย Willian Trelease ใน ค.ศ. 1907 เพื่อเป็นเกียรติแก่ Dr.Rudolf Endlich ผู้ค้นพบ ใบหนาแข็งสีเขียวอมฟ้า ทนแดดและทนแล้งได้เป็นอย่างดี ปลูกเลี้ยงได้ในประเทศไทย โตช้า ส่วนใหญ่ขยายพันธุ์ โดยเมล็ด ', '9548056.jpg', 'Asparagaceae', 'Yucca', '2022-03-26 15:09:36');
+  `plants_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ประทับเวลาพันธุ์ไม้'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -158,11 +45,11 @@ INSERT INTO `plants` (`plants_id`, `plants_name`, `plants_namemarket`, `plants_d
 --
 
 CREATE TABLE `plantsfamily` (
-  `plantsfamily_id` int(11) NOT NULL COMMENT 'หมายเลขกำกับวงศ์',
+  `plantsfamily_id` int NOT NULL COMMENT 'หมายเลขกำกับวงศ์',
   `plantsfamily_name` varchar(255) NOT NULL COMMENT 'ชื่อวงศ์',
   `plantsfamily_detail` text NOT NULL COMMENT 'รายละเอียด',
-  `plantsfamily_timestamp` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'ประทับเวลาวงศ์'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `plantsfamily_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ประทับเวลาวงศ์'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `plantsfamily`
@@ -219,7 +106,7 @@ INSERT INTO `plantsfamily` (`plantsfamily_id`, `plantsfamily_name`, `plantsfamil
 --
 
 CREATE TABLE `plantsform` (
-  `plantsform_id` int(11) NOT NULL COMMENT 'หมายเลขกำกับพันธุ์ไม้จดทะเบียน',
+  `plantsform_id` int NOT NULL COMMENT 'หมายเลขกำกับพันธุ์ไม้จดทะเบียน',
   `plantsfamily_name` varchar(255) NOT NULL COMMENT 'วงศ์',
   `plantsgroup_name` varchar(255) NOT NULL COMMENT 'สกุล',
   `plantsform_name` varchar(255) NOT NULL COMMENT 'ชื่อพันธุ์ไม้จดทะเบียน',
@@ -230,17 +117,9 @@ CREATE TABLE `plantsform` (
   `plantsform_lng` varchar(255) NOT NULL COMMENT 'ลองติจูด',
   `plantsform_img` varchar(255) NOT NULL COMMENT 'รูปภาพ',
   `plantsform_status` enum('check','uncheck') NOT NULL DEFAULT 'uncheck' COMMENT 'สถานะ',
-  `user_id` int(11) NOT NULL COMMENT 'ผู้ใช้',
-  `plantsform_timestamp` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'ประทับเวลาพันธุ์ไม้จดทะเบียน'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `plantsform`
---
-
-INSERT INTO `plantsform` (`plantsform_id`, `plantsfamily_name`, `plantsgroup_name`, `plantsform_name`, `plantsform_namemarket`, `plantsform_detail`, `plantsform_address`, `plantsform_lat`, `plantsform_lng`, `plantsform_img`, `plantsform_status`, `user_id`, `plantsform_timestamp`) VALUES
-(1, 'Amaryllidaceae', 'Boophane', 'เทสชื่อพันธุ์ไม้', '-', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '19/49 ซอย สายไหม 15 แขวง สายไหม เขตสายไหม กรุงเทพมหานคร 10220 ประเทศไทย', '13.9276771', '100.6441696', '1157915302.jpg', 'uncheck', 1, '2022-03-23 16:33:15'),
-(2, 'Aizoaceae', 'Aloinopsis', 'เทสชื่อพันธุ์ไม้ 2', '-', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.', 'อนุสาวรีย์ชัยสมรภูมิ ถนน พหลโยธิน แขวง ถนนพญาไท เขตราชเทวี กรุงเทพมหานคร', '13.7649084', '100.5382846', '1138015110.jpg', 'uncheck', 1, '2022-03-23 17:02:18');
+  `user_id` int NOT NULL COMMENT 'ผู้ใช้',
+  `plantsform_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ประทับเวลาพันธุ์ไม้จดทะเบียน'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -249,13 +128,13 @@ INSERT INTO `plantsform` (`plantsform_id`, `plantsfamily_name`, `plantsgroup_nam
 --
 
 CREATE TABLE `plantsgroup` (
-  `plantsgroup_id` int(11) NOT NULL COMMENT 'หมายเลขกำกับสกุล',
+  `plantsgroup_id` int NOT NULL COMMENT 'หมายเลขกำกับสกุล',
   `plantsgroup_name` varchar(255) NOT NULL COMMENT 'ชื่อสกุล',
   `plantsgroup_detail` text NOT NULL COMMENT 'รายละเอียด',
   `plantsgroup_type` text NOT NULL COMMENT 'ลักษณะทั่วไป',
   `plantsfamily_name` varchar(255) NOT NULL COMMENT 'ชื่อวงศ์',
-  `plantsgroup_timestamp` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'ประทับเวลาสกุล'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `plantsgroup_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ประทับเวลาสกุล'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `plantsgroup`
@@ -382,7 +261,7 @@ INSERT INTO `plantsgroup` (`plantsgroup_id`, `plantsgroup_name`, `plantsgroup_de
 --
 
 CREATE TABLE `shop` (
-  `shop_id` int(11) NOT NULL COMMENT 'หมายเลขกำกับร้านค้า',
+  `shop_id` int NOT NULL COMMENT 'หมายเลขกำกับร้านค้า',
   `shop_name` varchar(255) NOT NULL COMMENT 'ชื่อร้านค้า',
   `shop_phone` varchar(255) NOT NULL COMMENT 'เบอร์ติดต่อ',
   `shop_detail` text NOT NULL COMMENT 'รายละเอียด',
@@ -390,21 +269,9 @@ CREATE TABLE `shop` (
   `shop_lat` varchar(255) NOT NULL COMMENT 'ละติจูด',
   `shop_lng` varchar(255) NOT NULL COMMENT 'ลองติจูด',
   `shop_img` varchar(255) NOT NULL COMMENT 'รูปภาพ',
-  `user_id` int(11) NOT NULL COMMENT 'ผู้ใช้',
-  `shop_timestamp` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'ประทับเวลาร้านค้า'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `shop`
---
-
-INSERT INTO `shop` (`shop_id`, `shop_name`, `shop_phone`, `shop_detail`, `shop_address`, `shop_lat`, `shop_lng`, `shop_img`, `user_id`, `shop_timestamp`) VALUES
-(6, 'ตลาดต้นไม้จตุจักร', '0882923740', 'เป็นตลาดต้นไม้ที่ได้รับความนิยมมากๆ ในช่วงนี้เนื่องจากเดินทางสะดวก แล้วยังมีต้นไม้ให้เลือกเยอะมาก รวมถึงอุปกรณ์การปลูกต้นไม้อย่างครบครัน ไม่ว่าจะเป็น กระถางต้นไม้ ปุ๋ย ดิน ของตกแต่ง เรียกได้ว่ามือใหม่ที่ต้องการปลูกต้นไม้ มาที่นี่ที่เดียวก็สามารถกลับไปปลูกต้นไม้ที่บ้านได้เลย สำหรับต้นไม้ยอดนิยมไว้ฟอกอากาศอย่างพวก ลิ้นมังกร, มอนสเตอร่า, ยางอินเดีย, ไทรใบสัก หรือแม้แต่กระบองเพชร ก็มีให้เลือกเยอะมาก รวมถึงพวกพืชผักสวนครัวก็มีด้วยเช่นกัน ราคาก็ไม่แพงยังอยู่ในเกณฑ์ที่พอรับได้ แนะนำให้มาวันอังคารจะมีของให้เลือกเยอะที่สุด', 'เขตจตุจักร กรุงเทพมหานคร', '13.8306588', '100.5575633', '1105491082.jpg', 1, '2022-03-24 04:55:21'),
-(7, 'ตลาดต้นไม้เทเวศร์', '0882923741', 'เป็นตลาดต้นไม้และตลาดสดดั้งเดิมของกรุงเทพฯ อยู่ในเขตพระนคร เลียบคลองผดุงกรุงเกษม มีต้นไม้หลากหลายชนิด ส่วนใหญ่จะเป็นพวกไม้ดอก ไม้ประดับ และไม้มงคล มีอุปกรณ์ตกแต่งสวนให้ได้เลือกซื้อ รวมถึงยังมีเมล็ดพันธ์ต่างๆ จำหน่ายในราคาถูกด้วย แถมคนขายใจดี พร้อมให้คำแนะนำในการเลือกซื้อต้นไม้และจัดสวนเป็นอย่างดีเลย ที่นี่เปิดขายทุกวัน แต่ถ้ามาวันเสาร์-อาทิตย์ก็จะคึกคักเป็นพิเศษ นอกจากนี้ที่ตลาดยังมีของอร่อยให้กินเพียบ\r\n\r\n', 'เขตพระนคร กรุงเทพมหานคร', '13.7573251', '100.4951406', '1052487464.jpg', 1, '2022-03-24 04:56:05'),
-(8, 'ตลาดต้นไม้กรมทหารราบ 11', '0882923742', 'เป็นตลาดต้นไม้ที่ติดอับดับ 1 ใน 5 ที่ใหญ่ที่สุดในกรุงเทพฯ เมื่อเดินเข้ามาพื้นที่ด้านหน้าโครงการส่วนมากจะเป็นร้านจำหน่ายไม้ประดับขนาดเล็กทั่วไป ด้านในมีจำหน่ายไม้ดอกหลากสีนานาพันธุ์ และต้นไม้หลากหลายชนิดตั้งแต่ไม้ขนาดเล็กไปจนถึงไม้ใหญ่ รวมถึงมีอุปกรณ์ที่ใช้ในการปลูก การจัดสวนด้วย ซึ่งจำหน่ายในราคาถูกกว่าท้องตลาดถึง 30 เปอร์เซ็นต์เลยทีเดียว ที่นี่เปิดให้บริการทุกวัน ถ้ามาวันหยุดคนจะเยอะหน่อย แต่รับรองว่าได้ต้นไม้ถูกใจ และคุ้มค่า คุ้มราคาแน่นอนจ้า\r\n\r\n', 'กองพันทหารราบที่ 2 กรมทหารราบที่ 11 รักษาพระองค์ แขวง อนุสาวรีย์ เขตบางเขน กรุงเทพมหานคร', '13.863655', '100.5942459', '1940723130.jpg', 1, '2022-03-24 04:56:35'),
-(9, 'ตลาดต้นไม้เลียบทางด่วนรามอินทรา', '0882923742', 'ถึงแม้ที่นี่จะไม่ได้รวมกลุ่มกันขายเป็นตลาดเหมือนที่อื่นๆ ส่วนใหญ่จะเปิดเป็นร้านๆ ไป ตลอดแนวเลียบทางด่วนรามอินทราบนถนนประดิษฐ์มนูธรรม 27 สำหรับใครที่อยากจัดสวนเล็กๆ ไว้ในบริเวณบ้านที่นี่มีจำหน่ายต้นไม้กระถางเล็กๆ อย่างพวกไม้ดอก ไม้ประดับ และของตกแต่งสวนน่ารักๆ แต่ที่นี่จะหาที่จอดรถค่อนข้างยากเพราะอยู่ติดริมถนน ใครที่อาศัยหรือทำงานอยู่แถวๆ นี้แล้วอยากได้ต้นไม้ไปตกแต่งบ้าน มาแวะซื้อกันได้เลยนะ เพราะเขาเปิดขายทุกวันจ้า\r\n\r\n', 'ถนน ประดิษฐ์มนูธรรม แขวงลาดพร้าว เขตลาดพร้าว กรุงเทพมหานคร', '13.819494', '100.6253923', '218516836.jpg', 1, '2022-03-24 04:57:24'),
-(10, 'ตลาดต้นไม้ธนบุรี (สนามหลวง 2)', '0882923743', 'เป็นอีกหนึ่งตลาดต้นไม้ขนาดใหญ่ อยู่ทางฝั่งธน หรือที่รู้จักกันดีว่าสนามหลวง 2 ที่นี่จะเป็นศูนย์รวมต้นไม้ ดอกไม้ พันธุ์ไม้ชนิดต่างๆ ราคาถูก มีให้เลือกหลายร้าน นอกจากต้นไม้ดอกไม้แล้ว ยังจำหน่ายสัตว์เลี้ยงด้วยไม่ว่าจะเป็น สัตว์น้ำ สัตว์บก ปลาสายพันธุ์ต่างๆ สุนัขพันธุ์น่ารักๆ รวมถึงของประดับตกแต่งทั้งในบ้านและนอกบ้าน แถมระแวกนั้นมีสวนสาธารณะที่สามารถไปถ่ายรูป นั่งเล่นได้ เหมาะกับไปในวันว่างชิลๆ', 'ถนน คลองทวีวัฒนา แขวง ทวีวัฒนา เขตทวีวัฒนา กรุงเทพมหานคร', '13.7575863', '100.3496325', '1171471567.jpg', 1, '2022-03-24 04:58:22'),
-(11, 'ตลาดต้นไม้ทอ.ทุ่งสีกัน', '0882923744', 'เป็นตลาดต้นไม้ในส่วนของกองทัพอากาศย่านดอนเมือง ถึงที่นี่จะเป็นตลาดต้นไม้ที่ไม่ใหญ่มากนัก แต่ก็มีพันธุ์ไม้ให้เลือกเยอะ ที่ฮิตๆ อย่างยางอินเดีย ไทรใบสัก แล้วก็พวกกระบองเพชรน่ารักๆ ก็มีให้เลือกเต็มไปหมด รวมถึงวัสดุอุปกรณ์ในการจัดสวนก็มี เช่น กระถางต้นไม้สวยๆ อ่างบัว หินจัดสวน อิฐจัดสวน ดิน ปุ๋ย ราคาย่อมเยาไม่แพงมากนัก แถมที่นี่ยังมีที่จอดรถให้ด้วยสะดวกสุดๆ ใครที่อยู่ย่านดอนเมืองแล้วกำลังมองหาต้นไม้ไปปลูกสักต้น พร้อมอุปกรณ์ในการจัดสวนแวะมาที่นี่ได้เลย', 'ดอนเมือง (อาคารผู้โดยสาร 1) แขวง สนามบิน เขตดอนเมือง กรุงเทพมหานคร', '13.9029982', '100.5936219', '1884744555.jpg', 1, '2022-03-24 04:59:11');
+  `user_id` int NOT NULL COMMENT 'ผู้ใช้',
+  `shop_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ประทับเวลาร้านค้า'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -413,15 +280,15 @@ INSERT INTO `shop` (`shop_id`, `shop_name`, `shop_phone`, `shop_detail`, `shop_a
 --
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL COMMENT 'หมายเลขกำกับผู้ใช้',
+  `user_id` int NOT NULL COMMENT 'หมายเลขกำกับผู้ใช้',
   `user_fname` varchar(255) NOT NULL COMMENT 'ชื่อผู้ใช้',
   `user_lname` varchar(255) NOT NULL COMMENT 'นามสกุล',
   `user_idcard` varchar(255) NOT NULL COMMENT 'บัตรประชาชน',
   `user_email` varchar(255) NOT NULL COMMENT 'อีเมล',
   `user_pass` varchar(255) NOT NULL COMMENT 'รหัสผ่าน',
   `user_role` enum('admin','user') NOT NULL DEFAULT 'user' COMMENT 'สิทธิ์',
-  `user_timestamp` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'ประทับเวลาผู้ใช้'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `user_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ประทับเวลาผู้ใช้'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `users`
@@ -480,37 +347,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `plants`
 --
 ALTER TABLE `plants`
-  MODIFY `plants_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'หมายเลขกำกับพันธุ์ไม้', AUTO_INCREMENT=111;
+  MODIFY `plants_id` int NOT NULL AUTO_INCREMENT COMMENT 'หมายเลขกำกับพันธุ์ไม้', AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT for table `plantsfamily`
 --
 ALTER TABLE `plantsfamily`
-  MODIFY `plantsfamily_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'หมายเลขกำกับวงศ์', AUTO_INCREMENT=50;
+  MODIFY `plantsfamily_id` int NOT NULL AUTO_INCREMENT COMMENT 'หมายเลขกำกับวงศ์', AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `plantsform`
 --
 ALTER TABLE `plantsform`
-  MODIFY `plantsform_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'หมายเลขกำกับพันธุ์ไม้จดทะเบียน', AUTO_INCREMENT=3;
+  MODIFY `plantsform_id` int NOT NULL AUTO_INCREMENT COMMENT 'หมายเลขกำกับพันธุ์ไม้จดทะเบียน', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `plantsgroup`
 --
 ALTER TABLE `plantsgroup`
-  MODIFY `plantsgroup_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'หมายเลขกำกับสกุล', AUTO_INCREMENT=114;
+  MODIFY `plantsgroup_id` int NOT NULL AUTO_INCREMENT COMMENT 'หมายเลขกำกับสกุล', AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `shop`
 --
 ALTER TABLE `shop`
-  MODIFY `shop_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'หมายเลขกำกับร้านค้า', AUTO_INCREMENT=12;
+  MODIFY `shop_id` int NOT NULL AUTO_INCREMENT COMMENT 'หมายเลขกำกับร้านค้า', AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'หมายเลขกำกับผู้ใช้', AUTO_INCREMENT=14;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT COMMENT 'หมายเลขกำกับผู้ใช้', AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
