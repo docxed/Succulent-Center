@@ -14,7 +14,7 @@
     <br>
     <div class="col-lg-7 col-md-7 col-sm-12 m-auto">
         <div class="text-center">
-            <a href="<?= "uploads/shop/" . $shop['shop_img']; ?>" target="_blank"><img src="<?= "uploads/shop/" . $shop['shop_img']; ?>" class="w-55 mb-3 img-thumbnail" alt=""></a>
+            <a href="<?= $shop['shop_img']; ?>" target="_blank"><img src="<?= $shop['shop_img']; ?>" class="w-55 mb-3 img-thumbnail" alt=""></a>
         </div>
         <div class="content my-3">
             <p class="h5"><i class="fa-solid fa-circle-info me-1"></i>รายละเอียด</p>

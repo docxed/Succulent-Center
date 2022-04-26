@@ -16,7 +16,7 @@ if (!$forms) {
         <?php foreach ($forms as $form) { ?>
             <div class="col-lg-3 col-md-4 col-sm-12 mb-3">
                 <div class="border m-auto pb-3 h-100" style="border-radius: 10px;">
-                    <img src="<?= "uploads/plantsform/" . $form['plantsform_img']; ?>" alt="" style="width: 100%; height: 230px; border-top-left-radius: 10px; border-top-right-radius: 10px; object-fit: cover;">
+                    <img src="<?= $form['plantsform_img']; ?>" alt="" style="width: 100%; height: 230px; border-top-left-radius: 10px; border-top-right-radius: 10px; object-fit: cover;">
                     <div class="h5 my-3 mx-3 text-center">
                         <a href="./plantsformview.php?id=<?= $form['plantsform_id'] ?>" style="text-decoration: none;"><?= $form['plantsform_name'] ?></a>
                     </div>

@@ -140,7 +140,7 @@ if (isset($_GET['p']) && $_GET['p'] == 'shopadd') {
                 <?php foreach ($shops as $shop) { ?>
                     <div class="col-lg-3 col-md-4 col-sm-12 mb-3">
                         <div class="border m-auto pb-3 h-100" style="border-radius: 10px;">
-                            <img src="<?= "uploads/shop/" . $shop['shop_img']; ?>" alt="" style="width: 100%; height: 230px; border-top-left-radius: 10px; border-top-right-radius: 10px; object-fit: cover;">
+                            <img src="<?= $shop['shop_img']; ?>" alt="" style="width: 100%; height: 230px; border-top-left-radius: 10px; border-top-right-radius: 10px; object-fit: cover;">
                             <div class="h5 my-3 mx-3 text-center">
                                 <a href="./shopview.php?id=<?= $shop['shop_id'] ?>" style="text-decoration: none;"><?= $shop['shop_name'] ?></a>
                             </div>

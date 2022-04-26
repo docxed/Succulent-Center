@@ -14,7 +14,7 @@
     <br>
     <div class="col-lg-7 col-md-7 col-sm-12 m-auto">
         <div class="text-center">
-            <a href="<?= "uploads/plants/" . $plant['plants_img']; ?>" target="_blank"><img src="<?= "uploads/plants/" . $plant['plants_img']; ?>" class="w-55 mb-3 img-thumbnail" alt=""></a>
+            <a href="<?= $plant['plants_img']; ?>" target="_blank"><img src="<?= $plant['plants_img']; ?>" class="w-55 mb-3 img-thumbnail" alt=""></a>
         </div>
         <p>ชื่อทางการตลาด <?= $plant['plants_namemarket'] ?></p>
         <?php

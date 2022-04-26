@@ -21,7 +21,7 @@
             <?php } ?>
         </div>
         <div class="text-center">
-            <a href="<?= "uploads/plantsform/" . $form['plantsform_img']; ?>" target="_blank"><img src="<?= "uploads/plantsform/" . $form['plantsform_img']; ?>" class="w-55 mb-3 img-thumbnail" alt=""></a>
+            <a href="<?= $form['plantsform_img']; ?>" target="_blank"><img src="<?= $form['plantsform_img']; ?>" class="w-55 mb-3 img-thumbnail" alt=""></a>
         </div>
         <p>ชื่อทางการตลาด <?= $form['plantsform_namemarket'] ?></p>
         <p>วงศ์ <?= $form['plantsfamily_name'] ?></p>

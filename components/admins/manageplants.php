@@ -71,7 +71,7 @@ if (isset($_GET['id'])) { ?>
                             <textarea name="detail" class="form-control" cols="30" rows="5" placeholder="รายละเอียด" aria-describedby="detail" required><?= $edit_plants['plants_detail']; ?></textarea>
                         </div>
                         <div class="mb-3">
-                            <img src="<?= "uploads/plants/".$edit_plants['plants_img']; ?>" class=" my-3 w-100" alt="">
+                            <img src="<?= $edit_plants['plants_img']; ?>" class=" my-3 w-100" alt="">
                             <label for="img" class="form-label">รูปภาพประกอบ (Optional)</label>
                             <input class="form-control" type="file" id="imgInput2" name="img" accept=".jpg, .jpeg, .png">
                             <img id="previewImg2" class=" mt-3 w-100" alt="">

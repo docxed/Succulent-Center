@@ -1,5 +1,9 @@
 <?php include_once("./components/head.php"); ?>
 <?php
+require __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 session_start();
 require_once("./config/db.php");
 
@@ -38,12 +42,33 @@ if (isset($_POST['add'])) {
         $extention = explode(".", $img['name']);
         $fileActExt = strtolower(end($extention));
         $fileNew = rand() . "." . $fileActExt;
-        $filePath = "uploads/plantsform/" . $fileNew;
+        $filePath = "plantsform/" . $fileNew;
 
         try {
             if (in_array($fileActExt, $allow)) {
                 if ($img['size'] > 0 && $img['error'] == 0) {
-                    if (move_uploaded_file($img['tmp_name'], $filePath)) {
+                    $s3 = new Aws\S3\S3Client([
+                        'region'  => 'us-east-1',
+                        'version' => 'latest',
+                        'credentials' => [
+                            'key'    => $_ENV['S3_KEY'],
+                            'secret' => $_ENV['S3_SECRET'],
+                        ]
+                    ]);
+                    try {
+                        $result = $s3->putObject([
+                            'Bucket' => 'succulent-center',
+                            'Key'    => $filePath,
+                            'SourceFile' => $img['tmp_name'],
+                            'ACL'    => 'public-read',
+                            'ContentType' => 'image/png'
+                        ]);
+                    } catch (S3Exception $e) {
+                        echo $e;
+                    }
+                    $uploaded_images = $result['ObjectURL'] . PHP_EOL;
+                    $fileNew = $uploaded_images;
+                    if ($uploaded_images) {
                         $add = $conn->prepare("INSERT INTO plantsform(plantsfamily_name, plantsgroup_name, plantsform_name, plantsform_namemarket, plantsform_detail, plantsform_address, plantsform_lat, plantsform_lng, plantsform_img, user_id)
                                             VALUES(:plantsfamily_name, :plantsgroup_name, :plantsform_name, :plantsform_namemarket, :plantsform_detail, :plantsform_address, :plantsform_lat, :plantsform_lng, :plantsform_img, :user_id)");
                         $add->bindParam(":plantsfamily_name", $plantsfamily_name);
@@ -70,7 +95,7 @@ if (isset($_POST['add'])) {
                                 });
                             });
                         </script>";
-                            header("refresh:1; url=plantsformview.php");
+                            header("refresh:1; url=settings.php?q=form");
                         } else {
                             echo "<script>
                             $(document).ready(function() {

@@ -1,7 +1,12 @@
 <?php include_once("./components/head.php"); ?>
 <?php
+require __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 session_start();
 require_once("./config/db.php");
+
 
 if (isset($_POST['add'])) {
     $plantsfamily_name = $_POST['plantsfamily_name'];
@@ -15,12 +20,33 @@ if (isset($_POST['add'])) {
     $extention = explode(".", $img['name']);
     $fileActExt = strtolower(end($extention));
     $fileNew = rand() . "." . $fileActExt;
-    $filePath = "uploads/plants/" . $fileNew;
+    $filePath = "plants/" . $fileNew;
 
     try {
         if (in_array($fileActExt, $allow)) {
             if ($img['size'] > 0 && $img['error'] == 0) {
-                if (move_uploaded_file($img['tmp_name'], $filePath)) {
+                $s3 = new Aws\S3\S3Client([
+                    'region'  => 'us-east-1',
+                    'version' => 'latest',
+                    'credentials' => [
+                        'key'    => $_ENV['S3_KEY'],
+                        'secret' => $_ENV['S3_SECRET'],
+                    ]
+                ]);
+                try {
+                    $result = $s3->putObject([
+                        'Bucket' => 'succulent-center',
+                        'Key'    => $filePath,
+                        'SourceFile' => $img['tmp_name'],
+                        'ACL'    => 'public-read',
+                        'ContentType' => 'image/png'
+                    ]);
+                } catch (S3Exception $e) {
+                    echo $e;
+                }
+                $uploaded_images = $result['ObjectURL'] . PHP_EOL;
+                $fileNew = $uploaded_images;
+                if ($uploaded_images) {
                     $add = $conn->prepare("INSERT INTO plants(plants_name, plants_namemarket, plants_detail, plants_img, plantsfamily_name, plantsgroup_name)
                                         VALUES(:name, :namemarket, :detail, :img, :plantsfamily_name, :plantsgroup_name)");
                     $add->bindParam(":name", $name);
@@ -81,11 +107,31 @@ if (isset($_POST['add'])) {
         $extention = explode(".", $img['name']);
         $fileActExt = strtolower(end($extention));
         $fileNew = rand() . "." . $fileActExt;
-        $filePath = "uploads/plants/" . $fileNew;
+        $filePath = "plants/" . $fileNew;
 
         if (in_array($fileActExt, $allow)) {
             if ($img['size'] > 0 && $img['error'] == 0) {
-                move_uploaded_file($img['tmp_name'], $filePath);
+                $s3 = new Aws\S3\S3Client([
+                    'region'  => 'us-east-1',
+                    'version' => 'latest',
+                    'credentials' => [
+                        'key'    => $_ENV['S3_KEY'],
+                        'secret' => $_ENV['S3_SECRET'],
+                    ]
+                ]);
+                try {
+                    $result = $s3->putObject([
+                        'Bucket' => 'succulent-center',
+                        'Key'    => $filePath,
+                        'SourceFile' => $img['tmp_name'],
+                        'ACL'    => 'public-read',
+                        'ContentType' => 'image/png'
+                    ]);
+                } catch (S3Exception $e) {
+                    echo $e;
+                }
+                $uploaded_images = $result['ObjectURL'] . PHP_EOL;
+                $fileNew = $uploaded_images;
             }
         }
     } else {
